@@ -1,0 +1,85 @@
+# String: Username to make admin API requests
+# Default: 'admin'
+admin_username: "admin"
+
+# String: Plaintext password to make admin API requests
+# Safe to remove if admin_hashed_password is set
+# Default: unset
+admin_password: CHANGE_ME
+
+# String: Hashed password (bcrypt) to make admin API requests - Preferred over plaintext, use lshash to generate
+# Please note that authentication takes noticeably longer than using plaintext password
+# Don't include the <username>: segment, just the hash
+# Default: unset (required to start application)
+#admin_hashed_password:
+
+# Boolean: Disables API. If set to true, admin_password/admin_hashed_password do not need to be set.
+# Default: false
+disable_api: false
+
+# String: Secret key used for cookies (used for storage of messages)
+# This should be a 12-16 character randomized string with letters, numbers, and symbols
+# Default: unset (required to start application)
+secret_key: CHANGE_ME
+
+# String: Filename of the URL database without extension
+# Default: 'urls'
+database_name: "urls"
+
+# Integer: Length of random short URLs by default
+# Default: 4
+random_length: 4
+
+# String: Allowed URL characters
+# Default: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
+allowed_chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+
+# Amount of time in seconds to spend generating random short URLs until timeout
+# Default: 5
+random_gen_timeout: 5
+
+# String: Name shown on tab while on site and on page header
+# Default: 'liteshort'
+site_name: "liteshort"
+
+# String: Domain where the shortlinks will be served from. Useful if using the web interface on a subdomain.
+# If not set, it is automatically taken from the URL the shorten request is sent to.
+# If you don't know, leave unset
+# Default: unset
+site_domain:
+
+# String: Subdomain to host the web interface on.
+# Useful if you want the shorturls on the short domain but the web interface on a subdomain.
+# If you don't know, leave unset
+# Default: unset
+subdomain:
+
+# String: URL which takes you to the most recent short URL's destination
+# Short URLs cannot be created with this string if set
+# Unset to disable
+# Default: l
+latest: "l"
+
+# Boolean: Show link to project repository on GitHub at bottom right corner of page
+# Default: true
+show_github_link: true
+
+# Boolean: Allow short URLs linking to your site_domain URL
+# Default: false
+selflinks: false
+
+# List: Prevent creation of URLs linking to domains in the blocklist
+# Example of list formatting in yaml:
+# blocklist:
+#     - blocklisted.com
+#     - subdomain.blocklisted.net
+# Default: []
+blocklist: []
+
+# String: API key to use Google Safe Browsing to verify links. Leave Unset to not use Safe Browsing.
+# Default: unset
+#safe_browse_key:
+
+# String: URL to replace malicious links (as determined by Safe Browsing) with
+# Default: unset
+#malicious_replace:

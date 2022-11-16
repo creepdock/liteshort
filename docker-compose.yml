@@ -1,0 +1,10 @@
+version: '3'
+services:
+    liteshort:
+        restart: unless-stopped
+        container_name: arewedown
+        image: ghcr.io/creepdock/liteshort:latest
+        ports:
+            - 8080:8080
+        volumes:
+            - ./data/:/data/
