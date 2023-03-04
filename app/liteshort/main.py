@@ -46,11 +46,11 @@ def check_short_exist(short):  # Allow to also check against a long link
 
 def linking_to_blocklist(long):
     # Removes protocol and other parts of the URL to extract the domain name
-    long = long.split("//")[-1].split("/")[0]
-    if long in current_app.config["blocklist"]:
+    domain = urllib.parse.urlparse(long).hostname
+    if domain in current_app.config["blocklist"]:
         return True
     if not current_app.config["selflinks"]:
-        return long in get_baseUrl()
+        return domain in get_baseUrl()
     return False
 
 
@@ -76,9 +76,8 @@ def delete_short(deletion):
 
 
 def delete_long(long):
-    if "//" in long:
-        long = long.split("//")[-1]
-    long = "%" + long + "%"
+    parsed = urllib.parse.urlparse(long)[1:]
+    long = f"%{''.join(parsed)}%"
     result = query_db(
         "SELECT * FROM urls WHERE long LIKE ?", (long,), False, None
     )  # Return as tuple instead of row
@@ -356,7 +355,3 @@ def main_post():
         return response(request, get_baseUrl() + short, "Error: Failed to generate")
     else:
         return response(request, None, "Long URL required")
-
-
-if __name__ == "__main__":
-    app.run()

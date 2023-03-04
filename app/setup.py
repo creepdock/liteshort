@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="liteshort",
-    version="1.2.3",
+    version="1.3.0",
     author="Rose Spangler",
     author_email="132@ikl.sh",
     description="User-friendly, actually lightweight, and configurable URL shortener",
