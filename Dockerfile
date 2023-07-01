@@ -2,7 +2,7 @@ FROM python:3.11-bookworm
 
 RUN apt update
 RUN apt install gnupg2 curl -y
-RUN apt full-upgrade
+RUN apt full-upgrade -y
 
 ENV NGINX_VERSION   1.24.0
 ENV NJS_VERSION     0.7.12
