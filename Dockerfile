@@ -1,12 +1,12 @@
-FROM python:3.11-bullseye
+FROM python:3.11-bookworm
 
 RUN apt update
 RUN apt install gnupg2 curl -y
 RUN apt full-upgrade
 
-ENV NGINX_VERSION   1.22.1
-ENV NJS_VERSION     0.7.7
-ENV PKG_RELEASE     1~bullseye
+ENV NGINX_VERSION   1.24.0
+ENV NJS_VERSION     0.7.12
+ENV PKG_RELEASE     1~bookworm
 RUN set -x \
 # create nginx user/group first, to be consistent throughout docker variants
     && addgroup --system --gid 110 nginx \
@@ -25,13 +25,13 @@ RUN set -x \
     && case "$dpkgArch" in \
         amd64|arm64) \
 # arches officialy built by upstream
-            echo "deb https://nginx.org/packages/debian/ bullseye nginx" >> /etc/apt/sources.list.d/nginx.list \
+            echo "deb https://nginx.org/packages/debian/ bookworm nginx" >> /etc/apt/sources.list.d/nginx.list \
             && apt-get update \
             ;; \
         *) \
 # we're on an architecture upstream doesn't officially build for
 # let's build binaries from the published source packages
-            echo "deb-src https://nginx.org/packages/debian/ bullseye nginx" >> /etc/apt/sources.list.d/nginx.list \
+            echo "deb-src https://nginx.org/packages/debian/ bookworm nginx" >> /etc/apt/sources.list.d/nginx.list \
             \
 # new directory for storing sources and .deb files
             && tempDir="$(mktemp -d)" \
